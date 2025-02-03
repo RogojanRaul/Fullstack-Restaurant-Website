@@ -1,12 +1,12 @@
-'use client';
-import React, { ChangeEvent, useRef, useState } from 'react';
+"use client";
+import React, { ChangeEvent, useRef, useState } from "react";
 
 import {
   currentUserSelector,
   userErrorSelector,
   userLoadingSelector,
-} from '@/store/user/selectors';
-import { useDispatch, useSelector } from 'react-redux';
+} from "@/store/user/selectors";
+import { useDispatch, useSelector } from "react-redux";
 import {
   updateUserStart,
   updateUserError,
@@ -15,7 +15,7 @@ import {
   deleteUserError,
   deleteUserSuccess,
   logoutUser,
-} from '@/store/user/slice';
+} from "@/store/user/slice";
 
 const ProfilePage = () => {
   const [formData, setFormData] = useState({});
@@ -36,9 +36,9 @@ const ProfilePage = () => {
 
     try {
       const res = await fetch(`api/user/update/${currentUser._id}`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
@@ -57,7 +57,7 @@ const ProfilePage = () => {
     try {
       dispatch(deleteUserStart());
       const res = await fetch(`api/user/delete/${currentUser._id}`, {
-        method: 'DELETE',
+        method: "DELETE",
       });
 
       const data = await res.json();
@@ -72,7 +72,7 @@ const ProfilePage = () => {
 
   const handleLogout = async () => {
     try {
-      await fetch('api/auth/logout');
+      await fetch("api/auth/logout");
       dispatch(logoutUser());
     } catch (error) {
       console.log(error);
@@ -80,51 +80,45 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className='p-3 max-w-lg mx-auto'>
-      <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1>
-      <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
-        <input type='file' ref={fileRef} hidden accept='image/*' />
-        <img
-          src={currentUser?.profilePicture}
-          alt='profile picture'
-          className='h-24 w-24 self-center cursor-pointer rounded-full object-cover'
-          onClick={() => fileRef.current?.click()}
-        />
+    <div className="p-3 max-w-lg mx-auto">
+      <h1 className="text-3xl font-semibold text-center my-7">Profile</h1>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <input type="file" ref={fileRef} hidden accept="image/*" />
         <input
-          type='text'
-          id='username'
+          type="text"
+          id="username"
           defaultValue={currentUser?.username}
-          placeholder='Username'
-          className='bg-slate-900 rounded-lg p-3 border-opacity-50 border-2 border-slate-400 text-white'
+          placeholder="Username"
+          className="bg-slate-900 rounded-lg p-3 border-opacity-50 border-2 border-slate-400 text-white"
           onChange={handleChange}
         />
         <input
-          type='email'
-          id='email'
+          type="email"
+          id="email"
           defaultValue={currentUser?.email}
-          placeholder='Email'
-          className='bg-slate-900 rounded-lg p-3 border-opacity-50 border-2 border-slate-400 text-white'
+          placeholder="Email"
+          className="bg-slate-900 rounded-lg p-3 border-opacity-50 border-2 border-slate-400 text-white"
           onChange={handleChange}
         />
         <input
-          type='text'
-          id='password'
-          placeholder='Password'
-          className='bg-slate-900 rounded-lg p-3 border-opacity-50 border-2 border-slate-400 text-white'
+          type="text"
+          id="password"
+          placeholder="Password"
+          className="bg-slate-900 rounded-lg p-3 border-opacity-50 border-2 border-slate-400 text-white"
           onChange={handleChange}
         />
-        <button className='bg-indigo-600 p-3 rounded-lg uppercase font-semibold hover:bg-indigo-500 duration-200'>
+        <button className="bg-indigo-600 p-3 rounded-lg uppercase font-semibold hover:bg-indigo-500 duration-200">
           Update
         </button>
       </form>
-      <div className='flex justify-between mt-5'>
+      <div className="flex justify-between mt-5">
         <span
-          className='text-red-500 cursor-pointer'
+          className="text-red-500 cursor-pointer"
           onClick={handleDeleteAccount}
         >
           Delete Account
         </span>
-        <span className='text-red-500 cursor-pointer' onClick={handleLogout}>
+        <span className="text-red-500 cursor-pointer" onClick={handleLogout}>
           Sign Out
         </span>
       </div>

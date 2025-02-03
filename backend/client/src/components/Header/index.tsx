@@ -1,10 +1,10 @@
-'use client';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useSelector } from 'react-redux';
+"use client";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useSelector } from "react-redux";
 
-import { routes, routesConfig } from '@/routes';
-import { currentUserSelector } from '@/store/user/selectors';
+import { routes, routesConfig } from "@/routes";
+import { currentUserSelector } from "@/store/user/selectors";
 
 const Header = () => {
   const pathname = usePathname();
@@ -12,12 +12,12 @@ const Header = () => {
   const currentUser = useSelector(currentUserSelector);
 
   return (
-    <div className='bg-slate-200'>
-      <div className='flex justify-between items-center px-[5%] py-[20px] text-slate-950'>
+    <div className="bg-slate-200">
+      <div className="flex justify-between items-center px-[5%] py-[20px] text-slate-950">
         <Link href={routes.home}>
-          <h1 className='font-bold'>Auth App</h1>
+          <h1 className="font-bold">Auth App</h1>
         </Link>
-        <ul className='flex justify-between items-center gap-4'>
+        <ul className="flex justify-between items-center gap-4">
           {routesConfig.map(
             (route) =>
               route.showInMenu && (
@@ -25,7 +25,7 @@ const Header = () => {
                   <Link
                     key={route.title}
                     href={route.url}
-                    className={`${pathname === route.url && 'underline'}`}
+                    className={`${pathname === route.url && "underline"}`}
                   >
                     {route.title}
                   </Link>
@@ -36,7 +36,7 @@ const Header = () => {
             <>
               <li>
                 <Link
-                  className='inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md'
+                  className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md"
                   href={routes.dashboard}
                 >
                   Dashboard
@@ -44,15 +44,10 @@ const Header = () => {
               </li>
               <li>
                 <Link
-                  className='flex justify-center items-center gap-2 py-2 px-4 rounded-md bg-slate-300 hover:bg-slate-400 transition duration-200 ease-in-out font-bold text-[14px] text-slate-800'
+                  className="flex justify-center items-center gap-2 py-2 px-4 rounded-md bg-slate-300 hover:bg-slate-400 transition duration-200 ease-in-out font-bold text-[14px] text-slate-800"
                   href={routes.profile}
                 >
-                  <img
-                    className='w-[30px] rounded-full object-fill object-center'
-                    src={currentUser.profilePicture}
-                    alt={`${currentUser.username} profile picture`}
-                  />
-                  <p className='font-bold text-[14px] text-slate-800'>
+                  <p className="font-bold text-[14px] text-slate-800">
                     {currentUser.username}
                   </p>
                 </Link>
