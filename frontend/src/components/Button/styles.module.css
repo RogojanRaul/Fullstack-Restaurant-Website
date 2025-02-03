@@ -1,0 +1,153 @@
+.wrapper {
+  /* Base colors - can be extended for more variants */
+  --button-primary-bg: #3b82f6;
+  --button-primary-text: #ffffff;
+  --button-primary-hover: #2563eb;
+  --button-primary-active: #1d4ed8;
+
+  --button-secondary-bg: #f3f4f6;
+  --button-secondary-text: #374151;
+  --button-secondary-hover: #e5e7eb;
+  --button-secondary-active: #d1d5db;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-family: var(--primary-font);
+  transition: all 150ms ease-in-out;
+  gap: 0.3125rem;
+  border: none;
+  cursor: pointer;
+  line-height: 100%;
+}
+
+.btnText {
+  line-height: 100%;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Variants */
+.primary {
+  background-color: var(--primary);
+  color: var(--dark);
+}
+
+.primary:hover {
+  background-color: var(--primary-shade-1);
+}
+
+.primary-secondary {
+  background-color: none;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+}
+
+.primary-secondary:hover {
+  background-color: var(--primary);
+  color: var(--dark);
+}
+
+.secondary {
+  background-color: var(--accent-1);
+  color: var(--dark);
+}
+
+.secondary:hover {
+  background-color: var(--accent-1-shade-1);
+}
+
+.ternary {
+  background-color: none;
+  color: white;
+  border: 1px solid white;
+  border-radius: 100px;
+}
+
+.ternary:hover {
+  background-color: var(--primary);
+  color: var(--dark);
+  border: 1px solid var(--primary);
+}
+
+.ternary-secondary {
+  background-color: var(--primary);
+  color: var(--dark);
+  border: 1px solid var(--primary);
+  border-radius: 100px;
+}
+
+.ternary-secondary:hover {
+  background: none;
+  color: white;
+  border: 1px solid white;
+  border-radius: 100px;
+}
+
+.ternary-ternary {
+  background-color: var(--accent-2);
+  color: var(--white);
+  border: 1px solid var(--accent-2);
+  border-radius: 100px;
+}
+
+.ternary-ternary:hover {
+  background: none;
+  color: white;
+  border: 1px solid white;
+  border-radius: 100px;
+}
+
+/* Sizes */
+.xs {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+}
+
+.sm {
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+}
+
+.sm.iconOnly {
+  padding: 0.7rem;
+}
+
+.md {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+}
+
+.md.iconOnly {
+  padding: 0.875rem;
+}
+
+.lg {
+  padding: 1.25rem 2.25rem;
+  font-size: 1.25rem;
+}
+
+.lg.iconOnly {
+  padding: 1.125rem;
+}
+
+.xl {
+  padding: 1.5rem 2.5rem;
+  font-size: 1.375rem;
+}
+
+.xl.iconOnly {
+  padding: 1.375rem;
+}
+
+/* Icon styles */
+.icon {
+  width: 1.25em;
+  height: 1.25em;
+}

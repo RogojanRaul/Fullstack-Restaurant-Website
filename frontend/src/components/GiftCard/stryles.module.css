@@ -1,0 +1,60 @@
+.card {
+  width: 100%;
+  max-width: 250px;
+  height: 350px;
+  border-radius: 20px;
+  background: radial-gradient(circle, #85191d, #270e0e);
+  cursor: pointer;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  isolation: isolate;
+}
+
+.metalLogo {
+  position: absolute;
+  width: 300px;
+  max-width: 800px;
+  left: 50%;
+  bottom: -40px;
+  transform: translateX(-50%);
+  z-index: -1;
+  opacity: 0.5;
+}
+
+.title {
+  font-size: 18px;
+  line-height: 100%;
+}
+
+.value {
+  position: relative;
+  line-height: 100%;
+  font-weight: 900;
+  text-align: center;
+}
+
+.icon {
+  position: absolute;
+  top: 5px;
+  left: -25px;
+}
