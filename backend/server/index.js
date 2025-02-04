@@ -12,14 +12,24 @@ dotenv.config();
 
 const app = express();
 
+const allowedOrigins = [
+  process.env.NEXT_PUBLIC_CLIENT_URL,
+  process.env.NEXT_PUBLIC_FRONTEND_URL,
+];
+
 app.use(
   cors({
-    origin: process.env.NEXT_PUBLIC_CLIENT_URL,
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
-
 mongoose
   .connect(process.env.NEXT_PUBLIC_MONGO)
   .then(() => {
