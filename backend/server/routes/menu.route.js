@@ -1,42 +1,45 @@
-import express from 'express';
+import express from "express";
 import {
   addLocation,
-  deleteLocation,
+  addCategory,
+  addSubcategory,
+  addItem,
+  getLocations,
+  getLocationCategories,
+  getCategorySubcategories,
+  getSubcategoryItems,
   updateLocation,
-} from '../controllers/menu.controller.js';
-import {
-  addNewCategories,
-  deleteCategory,
   updateCategory,
-} from '../controllers/menu.controller.js';
-import {
-  addNewSubcategories,
-  updateSubCategory,
-  deleteSubCategory,
-} from '../controllers/menu.controller.js';
-import { addItems, deleteItem } from '../controllers/menu.controller.js';
-import { getLocations } from '../controllers/menu.controller.js';
-import { getLocationsCategories } from '../controllers/menu.controller.js';
-import { getSubcategories } from '../controllers/menu.controller.js';
+  updateSubcategory,
+  updateItem,
+  deleteLocation,
+  deleteCategory,
+  deleteSubcategory,
+  deleteItem,
+  getAllCategories,
+} from "../controllers/menu.controller.js";
 
-const router = express();
+const router = express.Router();
 
-router.post('/location', addLocation);
-router.post('/category', addNewCategories);
-router.post('/subcategory', addNewSubcategories);
-router.post('/item', addItems);
+router.post("/locations", addLocation);
+router.post("/categories", addCategory);
+router.post("/subcategories", addSubcategory);
+router.post("/items", addItem);
 
-router.get('/getLocations', getLocations);
-router.get('/getLocationsCategories/:location', getLocationsCategories);
-router.get('/menuItems/:location/:category', getSubcategories);
+router.get("/locations", getLocations);
+router.get("/locations/:locationId/categories", getLocationCategories);
+router.get("/categories/:categoryId/subcategories", getCategorySubcategories);
+router.get("/subcategories/:subcategoryId/items", getSubcategoryItems);
+router.get("/categories", getAllCategories);
 
-router.delete('/deleteLocation/:locationId', deleteLocation);
-router.delete('/deleteCategory', deleteCategory);
-router.delete('/deleteSubCategory', deleteSubCategory);
-router.delete('/deleteItem', deleteItem);
+router.put("/locations/:locationId", updateLocation);
+router.put("/categories/:categoryId", updateCategory);
+router.put("/subcategories/:subcategoryId", updateSubcategory);
+router.put("/subcategories/:subcategoryId/items/:itemId", updateItem);
 
-router.post('/updateLocation', updateLocation);
-router.post('/updateCategory', updateCategory);
-router.post('/updateSubCategory', updateSubCategory);
+router.delete("/locations/:locationId", deleteLocation);
+router.delete("/categories/:categoryId", deleteCategory);
+router.delete("/subcategories/:subcategoryId", deleteSubcategory);
+router.delete("/subcategories/:subcategoryId/items/:itemId", deleteItem);
 
 export default router;

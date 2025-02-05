@@ -1,24 +1,37 @@
 export interface MenuItem {
+  _id: string;
   title: string;
-  description: string;
-  price: number;
+  description?: string;
+  prices?: number[];
+  glutenFree?: boolean;
+  plateSplitting?: boolean;
+  rawDisclaimer?: boolean;
 }
 
 export interface MenuSubcategory {
+  _id: string;
   title: string;
   description?: string;
   items: MenuItem[];
+  categories: string[];
 }
 
 export interface MenuCategory {
-  categoryName: string;
-  subcategories: MenuSubcategory[];
+  _id: string;
+  title: string;
+  subcategories: string[];
+  locations: string[];
 }
 
 export interface Location {
+  _id: string;
   title: string;
   address: string;
-  categories: MenuCategory[];
+  city: string;
+  postalCode: string;
+  phoneNumber: string;
+  emailAddress: string;
+  categories: string[];
 }
 
 export interface MenuState {
