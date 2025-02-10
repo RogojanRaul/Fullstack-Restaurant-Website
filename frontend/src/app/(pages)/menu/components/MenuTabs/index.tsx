@@ -56,7 +56,7 @@ const MenuTabs = () => {
       try {
         // Fetch categories
         const categoryResponse = (await get({
-          url: `/api/menu/locations/${currentLocationId}/categories`,
+          url: `/api/locations/${currentLocationId}/categories`,
         })) as MenuCategory[];
 
         if (!mounted) return;
@@ -83,7 +83,7 @@ const MenuTabs = () => {
           );
           if (selectedCategory) {
             subCategoryResponse = (await get({
-              url: `api/menu/categories/${selectedCategoryId}/subcategories`,
+              url: `api/locations//${currentLocationId}/categories/${selectedCategoryId}`,
             })) as MenuSubcategory[];
           }
         }

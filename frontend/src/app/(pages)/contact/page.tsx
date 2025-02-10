@@ -39,7 +39,7 @@ const Contact = () => {
     const getLocations = async () => {
       try {
         const response = (await get({
-          url: 'api/menu/locations',
+          url: 'api/locations',
         })) as Location[];
         setLocations(response);
         setSelectedLocation(response[0]);

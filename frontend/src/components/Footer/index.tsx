@@ -19,7 +19,7 @@ const Footer = () => {
     const getLocations = async () => {
       try {
         const response = (await get({
-          url: 'api/menu/locations',
+          url: 'api/locations',
         })) as Location[];
         console.log(response);
         setLocations(response);

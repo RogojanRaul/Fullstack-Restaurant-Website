@@ -38,7 +38,7 @@ const MenuComponent = () => {
     const getLocations = async () => {
       try {
         const response = (await get({
-          url: 'api/menu/locations',
+          url: 'api/locations',
         })) as Location[];
         setLocations(response);
 
@@ -101,7 +101,7 @@ const MenuComponent = () => {
 
 export default function Menu() {
   return (
-    <Suspense fallback={<div></div>}>
+    <Suspense fallback={<h1>Loading...</h1>}>
       <MenuComponent />
     </Suspense>
   );
