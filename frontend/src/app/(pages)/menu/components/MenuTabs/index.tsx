@@ -40,21 +40,23 @@ const MenuTabs = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const currentLocation = searchParams.get('location');
+  const currentLocationId = searchParams.get('location');
   const selectedCategoryId = searchParams.get('category');
 
   const skeletonArr = new Array(5).fill('');
+
+  console.log(state);
 
   useEffect(() => {
     let mounted = true;
 
     const fetchData = async () => {
-      if (!currentLocation) return;
+      if (!currentLocationId) return;
 
       try {
         // Fetch categories
         const categoryResponse = (await get({
-          url: `api/menu/getLocationsCategories/${currentLocation}`,
+          url: `/api/menu/locations/${currentLocationId}/categories`,
         })) as MenuCategory[];
 
         if (!mounted) return;
@@ -67,7 +69,7 @@ const MenuTabs = () => {
         ) {
           const defaultCategoryId = categoryResponse[0]._id;
           router.push(
-            `${pathname}?location=${currentLocation}&category=${defaultCategoryId}`,
+            `${pathname}?location=${currentLocationId}&category=${defaultCategoryId}`,
             { scroll: false }
           );
           return; // Let the URL change trigger a re-render
@@ -81,7 +83,7 @@ const MenuTabs = () => {
           );
           if (selectedCategory) {
             subCategoryResponse = (await get({
-              url: `api/menu/menuItems/${currentLocation}/${selectedCategory.categoryName}`,
+              url: `api/menu/categories/${selectedCategoryId}/subcategories`,
             })) as MenuSubcategory[];
           }
         }
@@ -110,19 +112,19 @@ const MenuTabs = () => {
     return () => {
       mounted = false;
     };
-  }, [currentLocation, selectedCategoryId]);
+  }, [currentLocationId, selectedCategoryId]);
 
   const renderCategories = () => {
     return state.categories?.map((category: any, index: number) => (
       <Link
         key={category._id}
         scroll={false}
-        href={`?location=${currentLocation}&category=${category._id}`}
+        href={`?location=${currentLocationId}&category=${category._id}`}
         className={`${styles.categoryLink} ${
           selectedCategoryId === category._id ? styles.active : ''
         }`}
       >
-        {category.categoryName}
+        {category.title}
         <span>{`/0${index + 1}`}</span>
       </Link>
     ));
@@ -139,7 +141,7 @@ const MenuTabs = () => {
         </div>
         <div className={styles.historyPoint}>
           <div className={styles.iconContainer}>
-            <img src='/icons/billSplit.svg' alt='gluten free icon' />
+            <img src='/icons/billSplit.svg' alt='bill splitting icon' />
           </div>
           <p className='whitespace-nowrap'>5 | Plate Splitting</p>
         </div>

@@ -60,6 +60,7 @@ const Button = ({
     currentVariant,
     btnSize,
     iconOnly ? styles.iconOnly : '',
+    disabled ? styles.disabled : '',
     className,
   ]
     .filter(Boolean)

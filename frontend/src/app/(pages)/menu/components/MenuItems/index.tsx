@@ -26,7 +26,47 @@ const MenuItems = ({ subCategories }: MenuItemsProps) => {
                     style={{ color: 'var(--primary)' }}
                     className='flex justify-between items-center text-2xl font-bold mb-2 uppercase'
                   >
-                    {item.title} <span>{item.price}</span>
+                    <div className='flex gap-1 items-center'>
+                      {item.title}
+
+                      {item.glutenFree && (
+                        <img
+                          src='/icons/glutenFree2.svg'
+                          alt='gluten free icon'
+                          className='w-[35px]'
+                        />
+                      )}
+
+                      {item.plateSplitting && (
+                        <img
+                          src='/icons/billSplit.svg'
+                          alt='bill splitting icon'
+                          className='w-[35px]'
+                        />
+                      )}
+
+                      {item.disclaimer && (
+                        <img
+                          src='/icons/billSplit.svg'
+                          alt='bill splitting icon'
+                          className='w-[35px]'
+                        />
+                      )}
+                    </div>
+                    {item.prices.length > 0 && (
+                      <div
+                        className={`${
+                          item.prices.length > 0 ? 'flex gap-2' : ''
+                        }`}
+                      >
+                        {item.prices.map((price, index) => (
+                          <span key={index}>
+                            {price}
+                            {index < item.prices.length - 1 && ' | '}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </h1>
                   <p className='text-md xl:text-[18px] text-gray-200'>
                     {item.description}

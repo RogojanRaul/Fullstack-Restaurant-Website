@@ -1,4 +1,5 @@
-import React from 'react';
+'use client';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { FaCopyright } from 'react-icons/fa';
 import { MdOutlineMailOutline } from 'react-icons/md';
@@ -6,30 +7,51 @@ import { IoPhonePortraitOutline } from 'react-icons/io5';
 import { FaFacebookSquare } from 'react-icons/fa';
 
 import { routesConfig } from '@/routes';
+import { get } from '@/Fetch';
+import { Location } from '@/types';
 
 import styles from './styles.module.css';
 
 const Footer = () => {
+  const [locations, setLocations] = useState<Location[]>([]);
+
+  useEffect(() => {
+    const getLocations = async () => {
+      try {
+        const response = (await get({
+          url: 'api/menu/locations',
+        })) as Location[];
+        console.log(response);
+        setLocations(response);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getLocations();
+  }, []);
+
   return (
     <>
       <div className={styles.footerWrapper}>
         <div className={styles.footer}>
           <div className={styles.containerInfo}>
-            <div className='mb-4'>
-              <h2>Greer, SC</h2>
-              <p className={styles.infoLine}>
-                <MdOutlineMailOutline /> info@dineatselect.com
-              </p>
-              <p className={styles.infoLine}>
-                <IoPhonePortraitOutline /> 864.551.2264
-              </p>
-            </div>
-            <div>
-              <h2>112 Trade St.</h2>
-              <p className={styles.infoLine}>
-                <MdOutlineMailOutline /> select112@dineatselect.com
-              </p>
-            </div>
+            {locations.map((location) => (
+              <div key={location._id}>
+                <h1 className='mb-1 text-xl font-bold'>{location.title}</h1>
+                <a
+                  href={`tel:${location.phoneNumber}`}
+                  className={styles.infoLine}
+                >
+                  <IoPhonePortraitOutline /> {location.phoneNumber}
+                </a>
+                <a
+                  href={`mailto:${location.emailAddress}`}
+                  className={styles.infoLine}
+                >
+                  <MdOutlineMailOutline /> {location.emailAddress}
+                </a>
+              </div>
+            ))}
           </div>
           <img
             className={styles.footerLogo}

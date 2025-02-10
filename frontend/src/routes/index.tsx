@@ -1,7 +1,6 @@
 export const routes = {
   home: '/',
   giftCards: '/giftCards',
-  careers: '/careers',
   contact: '/contact',
   menu: '/menu',
   reservation: '/reservation',
@@ -17,12 +16,6 @@ export const routesConfig = [
   {
     title: 'Gift Cards',
     url: routes.giftCards,
-    showInMenu: true,
-    showInFooter: true,
-  },
-  {
-    title: 'Careers',
-    url: routes.careers,
     showInMenu: true,
     showInFooter: true,
   },

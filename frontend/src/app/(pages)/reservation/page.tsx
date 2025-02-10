@@ -7,6 +7,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { FaArchway } from 'react-icons/fa6';
+import { FaLocationDot } from 'react-icons/fa6';
+import { IoPhonePortrait } from 'react-icons/io5';
 
 import { Location } from '@/types';
 import { get } from '@/Fetch';
@@ -30,7 +33,7 @@ const ReservationPage = () => {
     const getLocations = async () => {
       try {
         const response = (await get({
-          url: 'api/menu/getLocations',
+          url: 'api/menu/locations',
         })) as Location[];
         setLocations(response);
         setSelectedLocation(response[0]);
@@ -94,9 +97,20 @@ const ReservationPage = () => {
       </div>
       <div className={styles.locationContactInfo}>
         <div className='flex gap-[30px]'>
-          <p>{selectedLocation?._id}</p>
-          <p>{selectedLocation?.title}</p>
-          <p>{selectedLocation?.address}</p>
+          <p className='flex justify-center items-center gap-1 text-xl'>
+            <FaArchway />
+            {selectedLocation?.title}
+          </p>
+          <p className='flex justify-center items-center gap-1 text-xl'>
+            {' '}
+            <FaLocationDot />
+            {selectedLocation?.address}
+          </p>
+          <p className='flex justify-center items-center gap-1 text-xl'>
+            {' '}
+            <IoPhonePortrait />
+            {selectedLocation?.phoneNumber}
+          </p>
         </div>
       </div>
     </div>

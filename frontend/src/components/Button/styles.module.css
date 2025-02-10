@@ -24,6 +24,11 @@
   line-height: 100%;
 }
 
+.disabled {
+  filter: grayscale(100);
+  pointer-events: none;
+}
+
 .btnText {
   line-height: 100%;
 }

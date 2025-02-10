@@ -2,7 +2,10 @@ export type MenuItem = {
   _id: string;
   title: string;
   description: string;
-  price: number;
+  prices: number[];
+  glutenFree: boolean;
+  plateSplitting: boolean;
+  disclaimer: boolean;
 };
 
 export type MenuSubcategory = {
@@ -22,4 +25,8 @@ export type Location = {
   _id: string;
   title: string;
   address: string;
+  city: string;
+  postalCode: string;
+  phoneNumber: string;
+  emailAddress: string;
 };
