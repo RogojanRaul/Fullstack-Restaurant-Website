@@ -1,10 +1,7 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
-import { ScrollTrigger } from 'gsap/all';
 import { TfiMenu } from 'react-icons/tfi';
 import { IoMdRestaurant } from 'react-icons/io';
 import { FaRegCalendarAlt } from 'react-icons/fa';
@@ -25,9 +22,6 @@ const NavBar = () => {
 
   const navRef = useRef<HTMLDivElement | null>(null);
   const smallLogoRef = useRef<HTMLImageElement | null>(null);
-  const menuButtonRef = useRef(null);
-  const reservationButtonRef = useRef(null);
-  const tl = useRef<any>(null);
 
   const pathname = usePathname();
   const isMobile = useIsMobile();
@@ -42,96 +36,6 @@ const NavBar = () => {
   const handleCloseMenu = (e: any) => {
     setOpenMenu(false);
   };
-
-  // useEffect(() => {
-  //   if (tl.current) {
-  //     tl.current?.progress(0);
-  //   }
-  // }, [pathname]);
-
-  // useGSAP(() => {
-  //   if (
-  //     !navRef.current ||
-  //     !menuButtonRef.current ||
-  //     !reservationButtonRef.current
-  //   )
-  //     return;
-
-  //   gsap.registerPlugin(ScrollTrigger);
-
-  //   ScrollTrigger.refresh();
-
-  //   if (tl.current) {
-  //     tl.current.kill();
-  //     tl.current = null;
-  //     tl.current?.progress(0);
-  //   }
-
-  //   tl.current = gsap.timeline({
-  //     scrollTrigger: {
-  //       trigger: navRef.current,
-  //       start: 'clamp(top+=100 top)',
-  //       end: 'clamp(+=400)',
-  //       toggleActions: 'play none play reverse',
-  //       preventOverlaps: true,
-  //       scrub: true,
-  //       invalidateOnRefresh: true,
-  //       markers: true,
-  //       id: 'navbarTrigger',
-  //       onUpdate: (self) => console.log('progress:', self.progress),
-  //     },
-  //   });
-
-  //   tl.current
-  //     .to(navRef.current, {
-  //       background: 'rgba(20, 21, 23, 0.7)',
-  //       backdropFilter: 'blur(10px)',
-  //       boxShadow: '0 4px 6px rgba(0, 0, 0, 0.2)',
-  //       padding: '15px 40px',
-  //       marginTop: '15px',
-  //       border: 'none',
-  //       borderRadius: '20px',
-  //     })
-  //     .to(
-  //       '#link',
-  //       {
-  //         fontSize: '16px',
-  //       },
-  //       '<'
-  //     )
-  //     .to(
-  //       [menuButtonRef.current, reservationButtonRef.current],
-  //       {
-  //         padding: '0.6rem 1.2rem',
-  //         fontSize: '0.9rem',
-  //         color: (index: number) => (index === 0 ? 'black' : 'white'),
-  //         stagger: 0,
-  //         backgroundColor: (index: number) =>
-  //           index === 0 ? '#fce4b1 ' : '#c1223c',
-  //         border: (index: number) =>
-  //           index === 0 ? '1px solid #fce4b1 ' : '1px solid #c1223c',
-  //       },
-  //       '<'
-  //     )
-  //     .to(
-  //       smallLogoRef.current,
-  //       {
-  //         opacity: isHomePage ? 0 : 1,
-  //       },
-  //       '<'
-  //     );
-
-  //   return () => {
-  //     if (tl.current) {
-  //       tl.current.kill();
-  //       tl.current = null;
-  //       tl.current?.progress(0);
-  //     }
-
-  //     ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-  //     ScrollTrigger.refresh();
-  //   };
-  // }, [isHomePage, pathname]);
 
   const renderLinks = () => {
     return (
@@ -257,7 +161,6 @@ const NavBar = () => {
             </div>
           ) : (
             <div className='w-full flex justify-between items-center'>
-              {renderLogo()}
               <Button
                 variant='ternary'
                 as='button'
@@ -265,6 +168,15 @@ const NavBar = () => {
                 iconOnly
                 startIcon={<TfiMenu size={15} />}
                 onClick={handleOpenMenu}
+              />
+              {renderLogo()}
+              <Button
+                variant='ternary'
+                as='Link'
+                href={routes.menu}
+                size='sm'
+                startIcon={<IoMdRestaurant size={15} />}
+                iconOnly
               />
             </div>
           )}

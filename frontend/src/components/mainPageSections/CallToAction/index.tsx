@@ -1,5 +1,5 @@
 'use client';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/all';
@@ -16,30 +16,30 @@ const CallToAction = () => {
   const descriptionRef = useRef<HTMLDivElement>(null);
   const tl = useRef<any | null>(null);
 
-  useGSAP(() => {
-    gsap.registerPlugin(ScrollTrigger);
+  useEffect(() => {
+    const context = gsap.context(() => {
+      gsap.set(titleRef.current, { opacity: 0, x: -100 });
+      gsap.set(imgRef.current, { opacity: 0 });
+      gsap.set(descriptionRef.current, { opacity: 0, x: 100 });
 
-    if (!titleRef.current || !imgRef.current || !descriptionRef.current) return;
+      tl.current = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top+=100 bottom',
+          end: 'center center',
+          toggleActions: 'play none play reverse',
+          preventOverlaps: true,
+          scrub: 1,
+        },
+      });
 
-    gsap.set(titleRef.current, { opacity: 0, x: -100 });
-    gsap.set(imgRef.current, { opacity: 0 });
-    gsap.set(descriptionRef.current, { opacity: 0, x: 100 });
-
-    tl.current = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: 'top+=100 bottom',
-        end: 'center center',
-        toggleActions: 'play none play reverse',
-        preventOverlaps: true,
-        scrub: 1,
-      },
+      tl.current
+        .to(titleRef.current, { opacity: 1, x: 0 })
+        .to(imgRef.current, { opacity: 1 }, '<')
+        .to(descriptionRef.current, { opacity: 1, x: 0 }, '<');
     });
 
-    tl.current
-      .to(titleRef.current, { opacity: 1, x: 0 })
-      .to(imgRef.current, { opacity: 1 }, '<')
-      .to(descriptionRef.current, { opacity: 1, x: 0 }, '<');
+    return () => context.revert();
   }, []);
 
   return (

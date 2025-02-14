@@ -1,88 +1,81 @@
 'use client';
-import { useRef } from 'react';
+import { useRef, useMemo, useEffect } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/all';
 import { AiOutlineTrademark } from 'react-icons/ai';
-import ScrollAnimatedIcon from '@/components/ScrollAnimatedIcon';
 
+import ScrollAnimatedIcon from '@/components/ScrollAnimatedIcon';
 import useIsMobile from '@/hooks/useIsMobile';
 
 import styles from './styles.module.css';
 
 const Hero = () => {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const backgroundImgRef = useRef<HTMLImageElement | null>(null);
-  const overlayRef = useRef<HTMLDivElement | null>(null);
-  const scrollIconRef = useRef<HTMLDivElement | null>(null);
-  const logoRef = useRef<HTMLDivElement | null>(null);
-  const titleRef = useRef<HTMLDivElement | null>(null);
-  const tl = useRef<any | null>(null);
-  const tl2 = useRef<any | null>(null);
-  const tlLogo = useRef<any | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const backgroundImgRef = useRef<HTMLImageElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const scrollIconRef = useRef<HTMLDivElement>(null);
+  const logoRef = useRef<any>(null);
+  const titleRef = useRef<HTMLDivElement>(null);
 
   const isMobile = useIsMobile();
 
-  useGSAP(() => {
-    gsap.registerPlugin(ScrollTrigger);
+  useEffect(() => {
+    const context = gsap.context(() => {
+      const tl = gsap.timeline();
 
-    tl.current = gsap.timeline();
-    tl2.current = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: 'top+=200 top',
-        end: 'bottom',
-        toggleActions: 'play none play reverse',
-        preventOverlaps: true,
-        scrub: 1,
-      },
-    });
-    tlLogo.current = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: 'clamp(top top)',
-        end: 'clamp(+=500)',
-        toggleActions: 'play none play reverse',
-        preventOverlaps: true,
-        scrub: true,
-        invalidateOnRefresh: true,
-      },
-    });
-
-    tl.current
-      .to(overlayRef.current, { opacity: 0, duration: 2, ease: 'power1.out' })
-      .to(
-        backgroundImgRef.current,
-        {
-          scale: 1,
-          duration: 2,
-          ease: 'ease-out',
+      const tl2 = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top+=200 top',
+          end: 'bottom',
+          toggleActions: 'play none play reverse',
+          preventOverlaps: true,
+          scrub: 1,
         },
-        '<'
-      )
-      .to(scrollIconRef.current, { opacity: 1, duration: 2 }, '<')
-      .to(logoRef.current, { opacity: 1, duration: 2 }, '<')
-      .to(titleRef.current, { opacity: 1, duration: 2 }, '-=1');
+      });
 
-    tl2.current
-      .to(backgroundImgRef.current, {
-        filter: 'blur(30px)',
-      })
-      .to(
-        titleRef.current,
-        {
-          filter: 'blur(30px)',
-          opacity: 0,
+      const tlLogo = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'clamp(top top)',
+          end: 'clamp(+=500)',
+          toggleActions: 'play none play reverse',
+          preventOverlaps: true,
+          scrub: true,
+          invalidateOnRefresh: true,
         },
-        '<'
+      });
+
+      tl.set(
+        [
+          overlayRef.current,
+          scrollIconRef.current,
+          logoRef.current,
+          titleRef.current,
+        ],
+        { opacity: 0 }
       );
 
-    tlLogo.current.to(logoRef.current, {
-      top: '30px',
-      left: isMobile ? '100px' : '50%',
-      width: '45px',
-      transform: 'translate(-50%, 0)',
+      tl.to(overlayRef.current, { opacity: 0, duration: 2, ease: 'power1.out' })
+        .to(
+          backgroundImgRef.current,
+          { scale: 1, duration: 2, ease: 'ease-out' },
+          '<'
+        )
+        .to(scrollIconRef.current, { opacity: 1, duration: 2 }, '<')
+        .to(logoRef.current, { opacity: 1, duration: 2 }, '<')
+        .to(titleRef.current, { opacity: 1, duration: 2 }, '-=1');
+
+      tl2.to(backgroundImgRef.current, { filter: 'blur(30px)' });
+
+      tlLogo.to(logoRef.current, {
+        top: '60px',
+        width: '45px',
+      });
     });
+
+    return () => context.revert();
   }, [isMobile]);
 
   return (
@@ -95,9 +88,13 @@ const Hero = () => {
         ref={backgroundImgRef}
       />
       <div className={styles.content}>
-        <div ref={logoRef} className={styles.logo}>
-          <img src='select-logo.svg' alt='select logo' />
-        </div>
+        <img
+          src='select-logo.svg'
+          alt='select logo'
+          className={styles.logo}
+          ref={logoRef}
+        />
+
         <div ref={titleRef} className={styles.titleContainer}>
           <h1 className={styles.title}>
             DINE DIFFERENT{' '}

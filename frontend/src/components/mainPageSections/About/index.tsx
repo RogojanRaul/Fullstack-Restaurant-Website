@@ -1,5 +1,5 @@
 'use client';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
@@ -23,90 +23,94 @@ const About = () => {
 
   const isMobile = useIsMobile();
 
-  useGSAP(() => {
-    tl.current = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: 'top bottom',
-        end: isMobile ? 'center center' : 'bottom-=200',
-        toggleActions: 'play none play reverse',
-        preventOverlaps: true,
-        scrub: 1,
-      },
-    });
+  useEffect(() => {
+    const context = gsap.context(() => {
+      tl.current = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top bottom',
+          end: isMobile ? 'center center' : 'bottom-=200',
+          toggleActions: 'play none play reverse',
+          preventOverlaps: true,
+          scrub: 1,
+        },
+      });
 
-    gsap.set(imgRef.current, {
-      x: '-250px',
-      opacity: 0,
-      rotate: '30deg',
-    });
-    gsap.set(img2Ref.current, {
-      x: '100px',
-      opacity: 0,
-      rotate: '60deg',
-    });
-    gsap.set(img3Ref.current, {
-      x: '-100px',
-      opacity: 0,
-      rotate: '-20deg',
-    });
-    gsap.set(img4Ref.current, {
-      opacity: 0,
-    });
-    gsap.set(textRef.current, {
-      x: '50px',
-      opacity: 0,
-    });
+      gsap.set(imgRef.current, {
+        x: '-250px',
+        opacity: 0,
+        rotate: '30deg',
+      });
+      gsap.set(img2Ref.current, {
+        x: '100px',
+        opacity: 0,
+        rotate: '60deg',
+      });
+      gsap.set(img3Ref.current, {
+        x: '-100px',
+        opacity: 0,
+        rotate: '-20deg',
+      });
+      gsap.set(img4Ref.current, {
+        opacity: 0,
+      });
+      gsap.set(textRef.current, {
+        x: '50px',
+        opacity: 0,
+      });
 
-    tl.current
-      .to(imgRef.current, {
-        x: 0,
-        opacity: 1,
-        rotate: 0,
-        duration: animationDuration,
-        ease: 'power3.out',
-      })
-      .to(
-        img2Ref.current,
-        {
+      tl.current
+        .to(imgRef.current, {
           x: 0,
           opacity: 1,
           rotate: 0,
           duration: animationDuration,
           ease: 'power3.out',
-        },
-        '<'
-      )
-      .to(
-        img3Ref.current,
-        {
-          x: 0,
-          opacity: 1,
-          rotate: '20deg',
-          duration: animationDuration,
-          ease: 'power3.out',
-        },
-        '<'
-      )
-      .to(
-        img4Ref.current,
-        {
-          opacity: 1,
-          duration: animationDuration,
-          ease: 'power3.out',
-        },
-        '<'
-      )
-      .to(
-        textRef.current,
-        {
-          x: 0,
-          opacity: 1,
-          duration: animationDuration,
-          ease: 'power3.out',
-        },
-        '<'
-      );
+        })
+        .to(
+          img2Ref.current,
+          {
+            x: 0,
+            opacity: 1,
+            rotate: 0,
+            duration: animationDuration,
+            ease: 'power3.out',
+          },
+          '<'
+        )
+        .to(
+          img3Ref.current,
+          {
+            x: 0,
+            opacity: 1,
+            rotate: '20deg',
+            duration: animationDuration,
+            ease: 'power3.out',
+          },
+          '<'
+        )
+        .to(
+          img4Ref.current,
+          {
+            opacity: 1,
+            duration: animationDuration,
+            ease: 'power3.out',
+          },
+          '<'
+        )
+        .to(
+          textRef.current,
+          {
+            x: 0,
+            opacity: 1,
+            duration: animationDuration,
+            ease: 'power3.out',
+          },
+          '<'
+        );
+    });
+
+    return () => context.revert();
   }, [isMobile]);
 
   return (
