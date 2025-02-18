@@ -1,0 +1,14 @@
+.logoContainer {
+  opacity: 0;
+  transition: all var(--transitionForNavActive) ease;
+}
+
+.logoContainer.logoNavActive {
+  opacity: 1;
+}
+
+.logo {
+  opacity: 1;
+  width: 45px;
+  transition: all var(--transitionForNavActive) ease;
+}

@@ -6,6 +6,7 @@ import { ReactNode, useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ScrollToTop from '@/utils/scrollToTop';
+import Hero from '../mainPageSections/Hero';
 
 gsap.registerPlugin(ScrollTrigger);
 

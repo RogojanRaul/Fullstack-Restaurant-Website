@@ -1,0 +1,57 @@
+.linksContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.link {
+  --_color: white;
+  position: relative;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-size: 25px;
+  padding: 10px;
+  transition: all var(--transitionForNavActive) ease;
+  color: var(--_color);
+  white-space: nowrap;
+}
+
+.link.active {
+  --_color: var(--primary);
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background-color: var(--_color);
+  bottom: -3px;
+  left: 0;
+  z-index: 101;
+  transition: all 300ms ease;
+}
+
+.link:hover::after {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .linksContainer {
+    flex-direction: row;
+    margin-bottom: 0;
+    flex: 1;
+  }
+
+  .link {
+    font-size: 1.125rem;
+    padding: initial;
+  }
+
+  .link.linkNavActive {
+    font-size: 1rem;
+  }
+}

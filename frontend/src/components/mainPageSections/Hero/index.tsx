@@ -9,6 +9,7 @@ import ScrollAnimatedIcon from '@/components/ScrollAnimatedIcon';
 import useIsMobile from '@/hooks/useIsMobile';
 
 import styles from './styles.module.css';
+import Image from 'next/image';
 
 const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -38,12 +39,11 @@ const Hero = () => {
       const tlLogo = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
-          start: 'clamp(top top)',
-          end: 'clamp(+=500)',
+          start: 'top top',
+          end: '+=500',
           toggleActions: 'play none play reverse',
           preventOverlaps: true,
           scrub: true,
-          invalidateOnRefresh: true,
         },
       });
 
@@ -75,14 +75,17 @@ const Hero = () => {
       });
     });
 
-    return () => context.revert();
+    return () => {
+      context.revert();
+    };
   }, [isMobile]);
 
   return (
     <main ref={containerRef} className={styles.heroContainer}>
       <div className={styles.overlay} ref={overlayRef} />
-      <img
+      <Image
         className={styles.backgroundImg}
+        fill
         src='/imgs/hero_2.jpg'
         alt='background image'
         ref={backgroundImgRef}

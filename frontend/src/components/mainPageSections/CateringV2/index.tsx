@@ -1,13 +1,15 @@
 'use client';
-import React, { useRef, useMemo, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
-import { ScrollTrigger } from 'gsap/all';
+import Image from 'next/image';
+
 import { routes } from '@/routes';
 import { FaRegCalendarAlt } from 'react-icons/fa';
-import styles from './styles.module.css';
 import Button from '../../Button';
 import DineDifferent from '../../DineDifferent';
+
+import styles from './styles.module.css';
+import useIsMobile from '@/hooks/useIsMobile';
 
 const CateringV2 = () => {
   const cardsContainerRef = useRef<HTMLDivElement>(null);
@@ -20,15 +22,15 @@ const CateringV2 = () => {
 
   useEffect(() => {
     const context = gsap.context(() => {
-      gsap.set(cardLeftRef.current, { x: -50 });
-      gsap.set(cardRightRef.current, { x: 50 });
-      gsap.set(cardMiddleRef.current, { scale: 0.95 });
+      gsap.set(cardLeftRef.current, { x: -100 });
+      gsap.set(cardRightRef.current, { x: 100 });
+      gsap.set(cardMiddleRef.current, { scale: 0.8 });
       gsap.set(headingRef.current, { scale: 0.8 });
 
       tl.current = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
-          start: 'top center+=100',
+          start: 'top bottom',
           end: 'bottom bottom-=200',
           toggleActions: 'play none play reverse',
           preventOverlaps: true,
@@ -52,31 +54,34 @@ const CateringV2 = () => {
       <div ref={cardsContainerRef} className={styles.cardsContainer}>
         <div id='cards' className={`${styles.card} ${styles.cardLeft}`}>
           <div className={styles.imgContainer}>
-            <img
+            <Image
               ref={cardLeftRef}
-              src='./imgs/gallery-img-2.jpg'
-              loading='lazy'
+              fill
+              src='/imgs/gallery-img-2.jpg'
               alt='Gallery Image 2'
+              style={{ objectFit: 'cover' }}
             />
           </div>
         </div>
         <div id='cards' className={`${styles.card}`}>
           <div className={styles.imgContainer}>
-            <img
+            <Image
               ref={cardMiddleRef}
-              src='./imgs/select_1.jpg'
-              loading='lazy'
+              fill
+              src='/imgs/select_1.jpg'
               alt='Select Image 1'
+              style={{ objectFit: 'cover' }}
             />
           </div>
         </div>
         <div id='cards' className={`${styles.card} ${styles.cardRight}`}>
           <div className={styles.imgContainer}>
-            <img
+            <Image
               ref={cardRightRef}
-              src='./imgs/gallery-img-6.jpg'
-              loading='lazy'
+              fill
+              src='/imgs/gallery-img-6.jpg'
               alt='Gallery Image 6'
+              style={{ objectFit: 'cover' }}
             />
           </div>
         </div>

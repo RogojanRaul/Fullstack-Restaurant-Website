@@ -13,16 +13,17 @@ import { FaRegCalendarAlt } from 'react-icons/fa';
 
 import styles from './style.module.css';
 import useIsMobile from '@/hooks/useIsMobile';
+import Image from 'next/image';
 
 const Gallery = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const galleryContainerRef = useRef<HTMLDivElement | null>(null);
   const galleryRef = useRef<HTMLDivElement | null>(null);
+  const mainImgRef = useRef<HTMLImageElement | null>(null);
   const dragInstance = useRef<Draggable | null>(null);
 
   const tl = useRef<any>(null);
   const textRef = useRef<HTMLDivElement | null>(null);
-  const imgRef = useRef<HTMLImageElement | null>(null);
 
   const { isHovered } = useMousePosition(galleryContainerRef);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -66,7 +67,7 @@ const Gallery = () => {
       };
 
       gsap.set(textRef.current, { x: 100 });
-      gsap.set(imgRef.current, { x: -100 });
+      gsap.set(mainImgRef.current, { x: -100 });
 
       tl.current = gsap.timeline({
         scrollTrigger: {
@@ -85,7 +86,7 @@ const Gallery = () => {
           x: 0,
         })
         .to(
-          imgRef.current,
+          mainImgRef.current,
           {
             x: 0,
           },
@@ -103,12 +104,12 @@ const Gallery = () => {
     <div ref={containerRef} className={styles.wrapper}>
       <div className={styles.container}>
         <div className={styles.mainImgContainer}>
-          <img
-            ref={imgRef}
-            className={styles.mainImg}
+          <Image
             src='/imgs/gallery-main-img-min.jpg'
-            alt='image'
-            loading='lazy'
+            alt='Main restaurant image'
+            fill
+            className='object-cover'
+            ref={mainImgRef}
           />
         </div>
         <div className={styles.content}>
@@ -137,7 +138,12 @@ const Gallery = () => {
                     index === activeIndex ? styles.active : ''
                   }`}
                 >
-                  <img src={image.img} alt='gallery img' loading='lazy' />
+                  <Image
+                    width={300}
+                    height={300}
+                    src={image.img}
+                    alt='gallery img'
+                  />
                 </div>
               ))}
             </div>
