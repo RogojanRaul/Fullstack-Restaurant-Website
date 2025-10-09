@@ -32,7 +32,7 @@ const TextBlock = ({
       <h1 className={styles.title}>{title}</h1>
       <p className={styles.description}>{description}</p>
       <Button
-        variant='primary-secondary'
+        variant='ternary-quaternary'
         as='Link'
         href={buttonHref}
         size='sm'

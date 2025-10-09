@@ -94,7 +94,7 @@ const CateringV2 = () => {
           range of catering options to meet your needs, and your budget.
         </p>
         <Button
-          variant='primary-secondary'
+          variant='ternary-quaternary'
           as='Link'
           href={routes.reservation}
           size='sm'

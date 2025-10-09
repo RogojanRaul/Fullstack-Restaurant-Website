@@ -116,7 +116,7 @@ const Gallery = () => {
           <div ref={textRef} className={styles.text}>
             <h1 className={styles.title}>WE OFFER THE BEST EXPERIENCE</h1>
             <Button
-              variant='primary-secondary'
+              variant='ternary-quaternary'
               as='Link'
               href='/menu'
               size='sm'
