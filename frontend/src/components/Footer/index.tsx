@@ -15,6 +15,29 @@ import styles from './styles.module.css';
 const Footer = () => {
   const [locations, setLocations] = useState<Location[]>([]);
 
+  const fallbackLocations: Location[] = [
+    {
+      _id: 'fallback-1',
+      title: 'Downtown Headquarters',
+      phoneNumber: '+1 (212) 555-0198',
+      emailAddress: 'hq@selectcorp.com',
+      address: '123 Main Street',
+      city: 'New York',
+      postalCode: '10001',
+    },
+    {
+      _id: 'fallback-2',
+      title: 'Westside Branch',
+      phoneNumber: '+1 (310) 555-0143',
+      emailAddress: 'west@selectcorp.com',
+      address: '450 Sunset Boulevard',
+      city: 'Los Angeles',
+      postalCode: '90028',
+    },
+  ];
+
+  const mappedLocations = locations.length > 0 ? locations : fallbackLocations;
+
   useEffect(() => {
     const getLocations = async () => {
       try {
@@ -35,7 +58,7 @@ const Footer = () => {
       <div className={styles.footerWrapper}>
         <div className={styles.footer}>
           <div className={styles.containerInfo}>
-            {locations.map((location) => (
+            {mappedLocations.map((location: Location) => (
               <div key={location._id}>
                 <h1 className='mb-1 text-xl font-bold'>{location.title}</h1>
                 <a
@@ -55,7 +78,7 @@ const Footer = () => {
           </div>
           <img
             className={styles.footerLogo}
-            src='/select-logo.svg'
+            src='aroma-logo-white.svg'
             alt='select logo'
           />
           <div className={styles.hoursContainer}>
@@ -69,7 +92,7 @@ const Footer = () => {
       <div className={styles.subFooterWrapper}>
         <div className={styles.subFooter}>
           <a
-            href='https://www.facebook.com/DineatSELECT112'
+            href='https://www.google.com/'
             target='_black'
             className='w-full flex-1 flex justify-center'
           >

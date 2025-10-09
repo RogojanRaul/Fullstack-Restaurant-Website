@@ -9,7 +9,6 @@ import Button from '../../Button';
 import DineDifferent from '../../DineDifferent';
 
 import styles from './styles.module.css';
-import useIsMobile from '@/hooks/useIsMobile';
 
 const CateringV2 = () => {
   const cardsContainerRef = useRef<HTMLDivElement>(null);
@@ -57,7 +56,7 @@ const CateringV2 = () => {
             <Image
               ref={cardLeftRef}
               fill
-              src='/imgs/gallery-img-2.jpg'
+              src='/imgs/cat-1.jpg'
               alt='Gallery Image 2'
               style={{ objectFit: 'cover' }}
             />
@@ -68,7 +67,7 @@ const CateringV2 = () => {
             <Image
               ref={cardMiddleRef}
               fill
-              src='/imgs/select_1.jpg'
+              src='/imgs/cat-2.jpg'
               alt='Select Image 1'
               style={{ objectFit: 'cover' }}
             />
@@ -79,7 +78,7 @@ const CateringV2 = () => {
             <Image
               ref={cardRightRef}
               fill
-              src='/imgs/gallery-img-6.jpg'
+              src='/imgs/cat-3.jpg'
               alt='Gallery Image 6'
               style={{ objectFit: 'cover' }}
             />
@@ -87,7 +86,6 @@ const CateringV2 = () => {
         </div>
       </div>
       <div ref={headingRef} className={styles.heading}>
-        <DineDifferent />
         <h1 className={styles.title}>CATERING EXPERIENCE FOR EVERYONE</h1>
         <p className={styles.description}>
           Wouldn’t you like to give your next event something special? Catering

@@ -105,7 +105,7 @@ const Gallery = () => {
       <div className={styles.container}>
         <div className={styles.mainImgContainer}>
           <Image
-            src='/imgs/gallery-main-img-min.jpg'
+            src='/imgs/main-gallery.jpg'
             alt='Main restaurant image'
             fill
             className='object-cover'
@@ -114,7 +114,6 @@ const Gallery = () => {
         </div>
         <div className={styles.content}>
           <div ref={textRef} className={styles.text}>
-            <DineDifferent color='var(--accent-2)' />
             <h1 className={styles.title}>WE OFFER THE BEST EXPERIENCE</h1>
             <Button
               variant='primary-secondary'

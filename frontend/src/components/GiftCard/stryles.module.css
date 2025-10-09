@@ -30,15 +30,10 @@
   isolation: isolate;
 }
 
-.metalLogo {
-  position: absolute;
-  width: 300px;
-  max-width: 800px;
-  left: 50%;
-  bottom: -40px;
-  transform: translateX(-50%);
+.logo {
+  width: 100%;
   z-index: -1;
-  opacity: 0.5;
+  margin-top: -50px;
 }
 
 .title {

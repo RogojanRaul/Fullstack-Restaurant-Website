@@ -77,7 +77,7 @@ const NavBar = () => {
           ) : (
             <div className={styles.callToActionBtns}>
               <Button
-                variant={isSticky ? 'ternary-secondary' : 'ternary'}
+                variant='ternary-secondary'
                 as='Link'
                 href={routes.menu}
                 size={isSticky ? 'xs' : 'sm'}
@@ -86,7 +86,7 @@ const NavBar = () => {
                 Menu
               </Button>
               <Button
-                variant={isSticky ? 'ternary-ternary' : 'ternary'}
+                variant='ternary-ternary'
                 as='Link'
                 href={routes.reservation}
                 size={isSticky ? 'xs' : 'sm'}

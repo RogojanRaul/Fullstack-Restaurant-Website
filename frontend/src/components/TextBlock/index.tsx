@@ -3,7 +3,7 @@ import Button from '../Button';
 import styles from './styles.module.css';
 
 type TextBlockType = {
-  tag: string;
+  tag?: string;
   title: string;
   description: string;
   buttonText: string;
@@ -23,10 +23,12 @@ const TextBlock = ({
 }: TextBlockType) => {
   return (
     <div className={styles.textContainer}>
-      <p className={styles.tag}>
-        <span className={styles.line} />
-        {tag}
-      </p>
+      {tag && (
+        <p className={styles.tag}>
+          <span className={styles.line} />
+          {tag}
+        </p>
+      )}
       <h1 className={styles.title}>{title}</h1>
       <p className={styles.description}>{description}</p>
       <Button

@@ -36,12 +36,12 @@ html {
   --accent-1-tint-2: #918484;
   --accent-1-tint-3: #a89b9b;
 
-  --accent-2: #dc143c;
-  --accent-2-shade-1: #c1223c;
-  --accent-2-shade-2: #960e28;
-  --accent-2-tint-1: #e74d6a;
-  --accent-2-tint-2: #f19195;
-  --accent-2-tint-3: #fabec3;
+  --accent-2: #e94e3c; /* main */
+  --accent-2-shade-1: #c23b2c;
+  --accent-2-shade-2: #9a2f23;
+  --accent-2-tint-1: #f16554;
+  --accent-2-tint-2: #f48472;
+  --accent-2-tint-3: #f9b0a3;
 
   --platinum-gray: #e5e4e2;
   --gray: #e5e4e2;

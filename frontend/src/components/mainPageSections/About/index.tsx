@@ -123,7 +123,7 @@ const About = () => {
       />
       <img
         ref={img2Ref}
-        src='/imgs/plate-2-img.png'
+        src='/plate-1.png'
         alt='background image'
         className={styles.plate2}
       />
@@ -136,13 +136,12 @@ const About = () => {
       <div className={styles.imgContainer}>
         <img
           ref={imgRef}
-          src='/imgs/plate-img.png'
+          src='/plate-3.png'
           alt='A image with a plate of food'
         />
       </div>
       <div ref={textRef}>
         <TextBlock
-          tag='About us'
           title='TASTE ISN’T LIMITED TO THE PLATE.'
           description='Discover the flavors that make us unforgettable! Explore our menu filled with fresh ingredients and mouthwatering dishes crafted to perfection. Click below to dive into a culinary adventure today!'
           buttonText='See Our Menu'

@@ -47,22 +47,15 @@ const Hero = () => {
         },
       });
 
-      tl.set(
-        [
-          overlayRef.current,
-          scrollIconRef.current,
-          logoRef.current,
-          titleRef.current,
-        ],
-        { opacity: 0 }
-      );
+      tl.set([scrollIconRef.current, logoRef.current, titleRef.current], {
+        opacity: 0,
+      });
 
-      tl.to(overlayRef.current, { opacity: 0, duration: 2, ease: 'power1.out' })
-        .to(
-          backgroundImgRef.current,
-          { scale: 1, duration: 2, ease: 'ease-out' },
-          '<'
-        )
+      tl.to(
+        backgroundImgRef.current,
+        { scale: 1, duration: 2, ease: 'ease-out' },
+        '<'
+      )
         .to(scrollIconRef.current, { opacity: 1, duration: 2 }, '<')
         .to(logoRef.current, { opacity: 1, duration: 2 }, '<')
         .to(titleRef.current, { opacity: 1, duration: 2 }, '-=1');
@@ -86,13 +79,13 @@ const Hero = () => {
       <Image
         className={styles.backgroundImg}
         fill
-        src='/imgs/hero_2.jpg'
+        src='/imgs/new_hero.jpg'
         alt='background image'
         ref={backgroundImgRef}
       />
       <div className={styles.content}>
         <img
-          src='select-logo.svg'
+          src='aroma-logo-white.svg'
           alt='select logo'
           className={styles.logo}
           ref={logoRef}
@@ -100,11 +93,16 @@ const Hero = () => {
 
         <div ref={titleRef} className={styles.titleContainer}>
           <h1 className={styles.title}>
-            DINE DIFFERENT{' '}
+            BEYOND THE BITE{' '}
             <span className={styles.icon}>
               <AiOutlineTrademark size={isMobile ? 30 : 40} />
             </span>
           </h1>
+          <p className={styles.description}>
+            Experience the art of fine dining in an elegant, inviting
+            atmosphere, where every dish is crafted with passion and tells a
+            story of exquisite flavors.
+          </p>
         </div>
       </div>
       <div ref={scrollIconRef} className={styles.scrollAnimatedIcon}>

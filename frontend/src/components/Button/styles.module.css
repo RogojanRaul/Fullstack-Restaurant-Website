@@ -84,28 +84,28 @@
 .ternary-secondary {
   background-color: var(--primary);
   color: var(--dark);
-  border: 1px solid var(--primary);
+  border: 2px solid var(--primary-tint-1);
   border-radius: 100px;
 }
 
 .ternary-secondary:hover {
   background: none;
   color: white;
-  border: 1px solid white;
+  border: 2px solid white;
   border-radius: 100px;
 }
 
 .ternary-ternary {
-  background-color: var(--accent-2);
-  color: var(--white);
-  border: 1px solid var(--accent-2);
+  background-color: var(--accent-2-shade-1);
+  color: white;
+  border: 2px solid var(--accent-2);
   border-radius: 100px;
 }
 
 .ternary-ternary:hover {
   background: none;
   color: white;
-  border: 1px solid white;
+  border: 2px solid white;
   border-radius: 100px;
 }
 

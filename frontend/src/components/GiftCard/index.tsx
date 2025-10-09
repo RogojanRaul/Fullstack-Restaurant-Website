@@ -14,11 +14,6 @@ const GiftCard = ({ value }: Props) => {
         <img src='/imgs/cardCutOut.svg' alt='cutout' />
       </div>
       <div className={styles.content}>
-        <img
-          src='/imgs/metalLogo2.png'
-          alt='select logo'
-          className={`${styles.metalLogo}`}
-        />
         <p className={styles.title}>Gift Card</p>
         <p
           className={styles.value}
@@ -32,7 +27,7 @@ const GiftCard = ({ value }: Props) => {
           <span>{value}</span>
         </p>
         <img
-          src='select-logo.svg'
+          src='aroma-logo-white.svg'
           alt='select logo'
           className={`${styles.logo}`}
         />
