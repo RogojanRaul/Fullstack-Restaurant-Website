@@ -63,8 +63,8 @@ const Hero = () => {
       tl2.to(backgroundImgRef.current, { filter: 'blur(30px)' });
 
       tlLogo.to(logoRef.current, {
-        top: '60px',
-        width: '45px',
+        top: '67px',
+        width: '80px',
       });
     });
 

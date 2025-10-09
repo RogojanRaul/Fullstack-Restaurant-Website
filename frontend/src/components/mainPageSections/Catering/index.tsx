@@ -74,7 +74,7 @@ const Catering = () => {
       </div>
       <img
         ref={imgRef}
-        src='/imgs/catering-img.png'
+        src='/imgs/catering.jpg'
         alt='photo'
         className={styles.photo}
       />

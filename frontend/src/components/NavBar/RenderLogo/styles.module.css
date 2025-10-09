@@ -9,6 +9,10 @@
 
 .logo {
   opacity: 1;
-  width: 45px;
+  width: 80px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   transition: all var(--transitionForNavActive) ease;
 }

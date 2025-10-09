@@ -5,7 +5,8 @@ export type DefaultButtonProps = {
     | 'primary-secondary'
     | 'ternary'
     | 'ternary-secondary'
-    | 'ternary-ternary';
+    | 'ternary-ternary'
+    | 'ternary-quaternary';
   size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
   href?: string;
   children?: React.ReactNode;

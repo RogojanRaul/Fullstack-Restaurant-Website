@@ -14,12 +14,12 @@ const RenderLogo = ({ isSticky, isHomePage }: RenderLogoType) => {
   return (
     <div
       className={`${styles.logoContainer} ${
-        isSticky && !isHomePage && styles.logoNavActive
+        !isHomePage && styles.logoNavActive
       }`}
     >
       <Link href={routes.home}>
         <img
-          src='select-logo.svg'
+          src='aroma-logo-white.svg'
           alt='select logo'
           className={`${styles.logo}`}
         />

@@ -52,7 +52,7 @@ const CallToAction = () => {
           choice.
         </p>
         <Button
-          variant='primary-secondary'
+          variant='ternary-quaternary'
           as='Link'
           href='/menu'
           size='sm'
