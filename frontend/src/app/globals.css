@@ -82,9 +82,7 @@ body {
 
 /* Scrollbar thumb hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: var(
-    --accent-1-shade-1
-  ); /* Darker color when hovering over the thumb */
+  background: var(--accent-2); /* Darker color when hovering over the thumb */
 }
 @layer base {
   :root {

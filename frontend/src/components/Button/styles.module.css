@@ -109,6 +109,20 @@
   border-radius: 100px;
 }
 
+.ternary-quaternary {
+  background-color: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  border-radius: 100px;
+}
+
+.ternary-quaternary:hover {
+  background: var(--primary);
+  color: black;
+  border: 2px solid var(--primary);
+  border-radius: 100px;
+}
+
 /* Sizes */
 .xs {
   padding: 0.6rem 1.2rem;

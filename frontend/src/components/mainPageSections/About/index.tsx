@@ -117,7 +117,7 @@ const About = () => {
     <div ref={containerRef} className={styles.aboutContainer}>
       <img
         ref={img4Ref}
-        src='/imgs/catering-2.jpg'
+        src='/imgs/catering.jpg'
         alt='background image'
         className={styles.bgImg}
       />
