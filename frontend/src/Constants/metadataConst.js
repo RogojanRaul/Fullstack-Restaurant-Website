@@ -1,7 +1,7 @@
 const metadataConst = {
-  title: 'Dine Different Ⓡ',
+  title: 'AROMA',
   description:
-    'Experience unforgettable flavors with Dine Different® at Select. Explore our menu of fresh, delicious dishes and catering options perfect for any event. Dine Different® today!',
+    'Experience unforgettable flavors with AROMA. Explore our menu of fresh, delicious dishes and catering options perfect for any event.',
 };
 
 export default metadataConst;
